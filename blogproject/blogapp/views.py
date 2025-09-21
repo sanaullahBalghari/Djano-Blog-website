@@ -3,7 +3,6 @@ from .models import *
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 def home(request):
     posts = Post.objects.all().order_by('-date')
 
@@ -110,11 +109,8 @@ def update_post(request,id):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        # image = request.FILES.get('image')  
         post.title = title
         post.content = content   
-        # if image: 
-        #     post.image = image
         
         post.save()  
         return redirect('blogdetail', id=id)
